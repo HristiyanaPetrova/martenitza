@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Мартеница</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="bg">
 <head>
     <meta charset="UTF-8">
@@ -16,14 +6,14 @@
     <title>Електронна Мартеница</title>
     <style>
         body {
-            background-color: background-color: #2e7d32;
+            background-color: #2e7d32; /* Коригиран цвят */
             text-align: center;
             font-family: Arial, sans-serif;
             color: white;
+            margin: 0;
+            padding: 20px;
         }
-        .container {
-            margin-top: 50px;
-        }
+        .container { margin-top: 50px; }
         .martenitsa {
             display: none;
             margin: 20px auto;
@@ -38,15 +28,14 @@
     </style>
 </head>
 <body>
-    <h1 style="font-size: 18px;">Честита Баба Марта!</h1>
-    <div class="container">
+    <h1>Честита Баба Марта!</h1> <div class="container">
         <h2>Колко е <span id="percent"></span>% от <span id="number"></span>?</h2>
         <input type="text" id="answer" placeholder="Вашият отговор">
         <button onclick="checkAnswer()">Провери</button>
         <button onclick="generateTask()">Нова задача</button>
         <p id="message"></p>
         <div id="martenitsa-container" class="martenitsa">
-            <h2>Честита Баба Марта!</h2>
+            <h2>🎉 Честита Баба Марта!</h2>
             <div id="martenitsa"></div>
             <p><i style="font-size: smaller;">Хр. Петрова</i></p>
         </div>
@@ -86,10 +75,8 @@
         function generateMartenitsa() {
             let martenitsa = document.getElementById("martenitsa");
             martenitsa.innerHTML = "";
-            
             let size = 5;
             let smiley = Math.random() > 0.5;
-            
             for (let i = 0; i < size; i++) {
                 let rowDiv = document.createElement("div");
                 for (let j = 0; j < size; j++) {
@@ -100,12 +87,7 @@
                 martenitsa.appendChild(rowDiv);
             }
         }
-
         window.onload = generateTask;
     </script>
-</body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>
