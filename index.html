@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Мартеница</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Електронна Мартеница</title>
+    <style>
+        body {
+            background-color: green;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .martenitsa {
+            display: none;
+            margin: 20px auto;
+        }
+        .pixel {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+        }
+        .red { background-color: red; }
+        .white { background-color: white; }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 18px;">Честита Баба Марта от Va, ОУ Св. Патриарх Евтимий, Велико Търново</h1>
+    <div class="container">
+        <h2>Колко е <span id="percent"></span>% от <span id="number"></span>?</h2>
+        <input type="text" id="answer" placeholder="Вашият отговор">
+        <button onclick="checkAnswer()">Провери</button>
+        <button onclick="generateTask()">Нова задача</button>
+        <p id="message"></p>
+        <div id="martenitsa-container" class="martenitsa">
+            <h2>Честита Баба Марта!</h2>
+            <div id="martenitsa"></div>
+            <p><i style="font-size: smaller;">Хр. Петрова</i></p>
+        </div>
+    </div>
+
+    <script>
+        let percent, number, correctAnswer;
+
+        function generateTask() {
+            percent = Math.floor(Math.random() * 50) + 1;
+            number = Math.floor(Math.random() * 200) + 50;
+            correctAnswer = (percent / 100) * number;
+            document.getElementById("percent").textContent = percent;
+            document.getElementById("number").textContent = number;
+            document.getElementById("answer").value = "";
+            document.getElementById("message").textContent = "";
+            document.getElementById("martenitsa-container").style.display = "none";
+        }
+
+        function checkAnswer() {
+            let userInput = document.getElementById("answer").value.replace(',', '.');
+            let userAnswer = parseFloat(userInput);
+            let message = document.getElementById("message");
+            let martenitsaContainer = document.getElementById("martenitsa-container");
+            
+            if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+                message.textContent = "Правилно!";
+                message.style.color = "yellow";
+                generateMartenitsa();
+                martenitsaContainer.style.display = "block";
+            } else {
+                message.textContent = "Опитай отново!";
+                message.style.color = "red";
+            }
+        }
+
+        function generateMartenitsa() {
+            let martenitsa = document.getElementById("martenitsa");
+            martenitsa.innerHTML = "";
+            
+            let size = 5;
+            let smiley = Math.random() > 0.5;
+            
+            for (let i = 0; i < size; i++) {
+                let rowDiv = document.createElement("div");
+                for (let j = 0; j < size; j++) {
+                    let pixel = document.createElement("div");
+                    pixel.className = "pixel " + (smiley && ((i === 1 && j === 1) || (i === 1 && j === 3) || (i === 3 && j > 0 && j < 4) || (i === 4 && (j === 1 || j === 3))) ? "red" : Math.random() > 0.5 ? "red" : "white");
+                    rowDiv.appendChild(pixel);
+                }
+                martenitsa.appendChild(rowDiv);
+            }
+        }
+
+        window.onload = generateTask;
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
